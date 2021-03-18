@@ -1,41 +1,74 @@
 package Search_tasks;
 
+import java.security.KeyPair;
+import java.util.*;
 import java.util.stream.IntStream;
+
+
+class Sub {
+    int first, second;
+
+    Sub(int a, int b) {
+        first = a;
+        second = b;
+    }
+}
 
 public class subArray {
 
-    public static void main(String[] args) {
-        int[] intArray = new int[]{4, 2, 7, 6, -3, -1, -2, 42, 0, -42, 9, -4, 5, -5, -6, -7, -8, -99, 42, 11, 20, 1, 2, 3};
+    static ArrayList<Sub> findSubArrays(int[] arr, int n, int total) {
 
-        //for (int i = 0; i < intArray.length; i++)
-          //  System.out.println("Index: " + i + " = " + intArray[i]);
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
 
-        intArray(intArray, 0 ,0);
+        ArrayList<Sub> out = new ArrayList<>();
 
-        int sum = IntStream.of(intArray).sum();
-        System.out.println(sum);
+        int sum = 0;
 
-    }
-    static void intArray(int []intArray, int start, int end)
-    {
-        /** Stop hvis vi har nådd slutten av arrayen **/
-        if (end == intArray.length)
-            return;
+        for(int i = 0; i < n; i++) {
+            sum += arr[i];
 
-        /** increment slutt punktet og start fra 0 **/
-        else if (start > end)
-            intArray(intArray, 0, end + 1);
+            if (sum == 0)
+                out.add(new Sub(0, i));
+            ArrayList<Integer> al = new ArrayList<>();
 
-        /** print subarrayen og increment start punktet **/
-        else
-        {
-                //System.out.println();
-            for (int i = start; i < end; i++){
-                //System.out.println(intArray[i]+ ",");
+            if (map.containsKey(sum)) {
+                al = map.get(sum);
+                for (int it = 0; it < al.size(); it++) {
+                    out.add(new Sub(al.get(it) + 1, i ));
+                }
             }
-                //System.out.println(intArray[end]);
-            intArray(intArray, start + 1, end);
+            al.add(i);
+            map.put(sum, al);
         }
-        return;
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++)
+                if (arr[i] + arr[j] == total)
+                    System.out.println(" Pairs of elements that adds up to zero (" + arr[i] + ", " + arr[j] + ")");
+
+        return out;
     }
+
+    static void print(ArrayList<Sub> out) {
+        for (int i = 0; i < out.size(); i++) {
+            Sub s = out.get(i);
+            System.out.println("Subarrays that adds up to zero " + s.first + " to " + s.second);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = {4, 2, 7, 6, -3, -1, -2, 42, 0, -42, 9, -4, 5, -5, -6, -7, -8, -99, 42, 11, 20, 1, 2, 3};
+        int n = arr.length;
+        int total = 0;
+
+        ArrayList<Sub> out = findSubArrays(arr, n, total);
+        if (out.size() == 0)
+            System.out.println("No subarray exists");
+        else print(out);
+    }
+
 }
+
+
+
+
