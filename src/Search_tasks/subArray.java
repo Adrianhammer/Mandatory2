@@ -16,37 +16,60 @@ class Sub {
 
 public class subArray {
 
+
+    /**Finding sub arrays that adds up to zero in the given array**/
+
     static ArrayList<Sub> findSubArrays(int[] arr, int n, int total) {
 
         HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
 
-        ArrayList<Sub> out = new ArrayList<>();
-
+        ArrayList<Sub> list1 = new ArrayList<>();
         int sum = 0;
-
         for(int i = 0; i < n; i++) {
+            //sum = sum + arr[i]
             sum += arr[i];
-
             if (sum == 0)
-                out.add(new Sub(0, i));
-            ArrayList<Integer> al = new ArrayList<>();
+                list1.add(new Sub(0, i));
 
+
+            ArrayList<Integer> list2 = new ArrayList<>();
             if (map.containsKey(sum)) {
-                al = map.get(sum);
-                for (int it = 0; it < al.size(); it++) {
-                    out.add(new Sub(al.get(it) + 1, i ));
+                list2 = map.get(sum);
+                for (int it = 0; it < list2.size(); it++) {
+                    list1.add(new Sub(list2.get(it) + 1, i ));
                 }
             }
-            al.add(i);
-            map.put(sum, al);
-        }
-        for (int i = 0; i < n; i++)
-            for (int j = i + 1; j < n; j++)
-                if (arr[i] + arr[j] == total)
-                    System.out.println(" Pairs of elements that adds up to zero (" + arr[i] + ", " + arr[j] + ")");
+            list2.add(i);
+            map.put(sum, list2);
 
-        return out;
+        }
+        return list1;
     }
+
+
+    /**Finding Pairs that adds up to zero in the given array**/
+
+     static void pairs(int[] arr, int total) {
+
+        Map<Integer, Integer> pairMap = new HashMap<>();
+        List pairList = new ArrayList();
+
+        for (int k = 0; k < arr.length; k++)
+
+        {
+            if (pairMap.containsKey(total - arr[k]))  {
+
+                Integer[] temp = { pairMap.get(total  - arr[k]), k };
+                pairList.add(temp);
+                System.out.printf("Pair found (%d, %d) \n", arr[pairMap.get(total - arr[k])], arr[k]);
+            }
+           else pairMap.put(arr[k], k);
+        }
+         System.out.println("No more pairs found");
+    }
+
+
+    /**Prints out the subarrrays that adds up to zero**/
 
     static void print(ArrayList<Sub> out) {
         for (int i = 0; i < out.size(); i++) {
@@ -55,11 +78,23 @@ public class subArray {
         }
     }
 
+    /**Finding the maximum and minimum number of the given array*/
+    
+
+
+
+
+
+
+
     public static void main(String[] args) {
 
         int[] arr = {4, 2, 7, 6, -3, -1, -2, 42, 0, -42, 9, -4, 5, -5, -6, -7, -8, -99, 42, 11, 20, 1, 2, 3};
         int n = arr.length;
         int total = 0;
+
+
+        pairs(arr, total);
 
         ArrayList<Sub> out = findSubArrays(arr, n, total);
         if (out.size() == 0)
