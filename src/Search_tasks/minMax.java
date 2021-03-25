@@ -24,7 +24,7 @@ public class minMax {
                 min = array.get(i);
             }
         }
-        System.out.println("Det minste tallet i listen er: " + min + " på index: " + array.indexOf(Collections.min(array)));
+        System.out.println(String.format("Det minste tallet i listen er: %d på index %d", min, array.indexOf(min) + 1));
     }
 
     public static void Max(ArrayList<Integer> array, int max) {
@@ -33,6 +33,6 @@ public class minMax {
                 max = array.get(i);
             }
         }
-        System.out.println("Det største tallet i listen er : " + max + " på index: " + array.indexOf(Collections.max(array)));
+        System.out.println(String.format("Det minste tallet i listen er: %d på index %d", max, array.indexOf(max) + 1));
     }
 }
