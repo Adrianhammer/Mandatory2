@@ -2,6 +2,8 @@ package Search_tasks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class minMax {
     public static void main(String[] args) {
@@ -16,12 +18,13 @@ public class minMax {
     }
 
     public static void Min(ArrayList<Integer> array, int min) {
+
         for (int i = 1; i < array.size(); i++) {
             if (array.get(i) < min) {
                 min = array.get(i);
             }
         }
-        System.out.println("Det minste tallet i listen er :" + min);
+        System.out.println("Det minste tallet i listen er: " + min + " på index: " + array.indexOf(Collections.min(array)));
     }
 
     public static void Max(ArrayList<Integer> array, int max) {
@@ -30,6 +33,6 @@ public class minMax {
                 max = array.get(i);
             }
         }
-        System.out.println("Det største tallet i listen er : " + max);
+        System.out.println("Det største tallet i listen er : " + max + " på index: " + array.indexOf(Collections.max(array)));
     }
 }
