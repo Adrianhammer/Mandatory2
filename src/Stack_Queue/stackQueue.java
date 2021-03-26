@@ -29,13 +29,13 @@ public class stackQueue {
 
     static void stackPop(Deque<Integer> deq) {
         deq.pop();
-        System.out.println(" \n Removes first number in the list");
+        System.out.println("\nRemoves first number in the list");
         System.out.println(deq);
     }
 
     static void queuePop(Deque<Integer> deq) {
         deq.removeLast();
-        System.out.println(" \n Removes last number in the list" );
+        System.out.println("\nRemoves last number in the list" );
         System.out.println(deq);
     }
 }
