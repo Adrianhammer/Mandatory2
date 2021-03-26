@@ -1,48 +1,64 @@
 package priorityQueue;
 
 
-import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
-public class priorityQueue{
+
+/**
+ * The reason for our choice in terms of using "ArrayList" is because of the simplicity of use.
+ * The list requires less "Set-up" to actually use compared to using HashMap for example.
+ * We tried using "PriorityQueue" that is a built in utillity in java, but found the arraylist to be better.
+ */
+public class priorityQueue {
+    private List<Element> priorityQueue = new ArrayList<>();
+
+    public Boolean addElement(Element e) {
+        return priorityQueue.add(e);
+    }
+
+    public Element getHighestPriority() {
+        Element priorityMax = null;
+        for (Element element : priorityQueue) {
+            if (priorityMax == null) {
+                priorityMax = element;
+            }
+            if (element.getPriority() > priorityMax.getPriority()) {
+                priorityMax = element;
+            }
+        }
+        return priorityMax;
+    }
+
+    public Boolean print_all_elements_in_order() {
+        priorityQueue.sort(Comparator.comparingInt(Element::getPriority).reversed());
+        System.out.println("\nPrinting sorted list...\n");
+        System.out.println("============Prioritized============");
+        priorityQueue.forEach(element -> System.out.println("Name: " + element.getName() + "  with priority: " + element.getPriority()));
+        System.out.println("===================================");
+        return true;
+    }
 
     public static void main(String[] args) {
 
-        HashMap<String, Integer> hm = new HashMap<>();
-        hm.put("Terje", 5);
-        hm.put("Kari", 7);
-        hm.put("Nils", 4);
-        hm.put("Otto", 8);
-        hm.put("Syvert", 7);
-        hm.put("Lise", 11);
-        hm.put("Notto", 0);
-        hm.put("Odd", 1);
-        hm.put("Even", 2);
+        priorityQueue priorityQueue = new priorityQueue();
+        priorityQueue.addElement(new Element("Terje", 5));
+        priorityQueue.addElement(new Element("Kari", 7));
+        priorityQueue.addElement(new Element("Nils", 4));
+        priorityQueue.addElement(new Element("Otto", 8));
+        priorityQueue.addElement(new Element("Syvert", 7));
+        priorityQueue.addElement(new Element("Lise", 11));
+        priorityQueue.addElement(new Element("Notto", 0));
+        priorityQueue.addElement(new Element("Odd", 1));
+        priorityQueue.addElement(new Element("Even", 2));
 
-        System.out.println("Unordered list: " + hm);
+        //printer alle elementene i rekkefølge
+        priorityQueue.print_all_elements_in_order();
 
-        PriorityQueue<String> pq = new PriorityQueue<>(Comparator.comparingInt(hm::get).reversed());
-        System.out.println("\nPrioritized list from Highest to Lowest: ");
-        pq.add("Terje");
-        pq.add("Otto");
-        pq.add("Even");
-        pq.add("Lise");
-        pq.add("Odd");
-        pq.add("Syvert");
-        pq.add("Kari");
-        pq.add("Nils");
-        pq.add("Notto");
-
-
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
-        System.out.println(pq.poll());
+        //printer element med høyest prioritet
+        System.out.println("\nThe name '" + priorityQueue.getHighestPriority().getName() + "' is the element with highest priority, with a priority of: "
+                + priorityQueue.getHighestPriority().getPriority());
 
     }
 }
