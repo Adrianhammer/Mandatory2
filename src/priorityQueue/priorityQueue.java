@@ -33,7 +33,7 @@ public class priorityQueue {
 
     public Boolean print_all_elements_in_order() {
         priorityQueue.sort(Comparator.comparingInt(Element::getPriority).reversed());
-        System.out.println("\nPrinting sorted list...\n");
+        System.out.println("\nPrinting sorted list...");
         System.out.println("============Prioritized============");
         priorityQueue.forEach(element -> System.out.println("Name: " + element.getName() + "  with priority: " + element.getPriority()));
         System.out.println("===================================");
@@ -57,7 +57,8 @@ public class priorityQueue {
         priorityQueue.print_all_elements_in_order();
 
         //printer element med høyest prioritet
-        System.out.println("\nThe name '" + priorityQueue.getHighestPriority().getName() + "' is the element with highest priority, with a priority of: "
+        System.out.println("\nFinding the name with highest priority...");
+        System.out.println("The name '" + priorityQueue.getHighestPriority().getName() + "' is the element with highest priority, with a priority of: "
                 + priorityQueue.getHighestPriority().getPriority());
 
     }
