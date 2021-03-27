@@ -5,6 +5,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * In this case we chose to use ArrayList as our datastructure for a few reasons. The numbers that we are working
+ * with are to be in a spesific order. ArrayList maintains the insertion order of the elements. In addition,
+ * worst case scenario for an ArrayList in terms of BigO-Notation is O(n) for search, insertion and deletion.
+ */
+
+
 public class minMax {
     public static void main(String[] args) {
         ArrayList<Integer> array = new ArrayList<>();
@@ -24,7 +31,7 @@ public class minMax {
                 min = array.get(i);
             }
         }
-        System.out.println(String.format("Det minste tallet i listen er: %d. På index %d", min, array.indexOf(min) + 1));
+        System.out.println(String.format("The smallest number in the list is: %d. At index %d", min, array.indexOf(min) + 1));
     }
 
     public static void Max(ArrayList<Integer> array, int max) {
@@ -33,6 +40,6 @@ public class minMax {
                 max = array.get(i);
             }
         }
-        System.out.println(String.format("Det største tallet i listen er: %d. På index: %d", max, array.indexOf(max) + 1));
+        System.out.println(String.format("The biggest number in the list is: %d. At index: %d", max, array.indexOf(max) + 1));
     }
 }
