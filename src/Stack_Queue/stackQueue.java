@@ -3,6 +3,12 @@ package Stack_Queue;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/**
+ * The reason for our choice in terms of using "Deque" is because of the simplicity of use.
+ * This requires less code and functions as a double ended queue that supports addition or removal of elements from either end of the data.
+ * We managed to do this by using the Deque interface in the java.util package.
+ **/
+
 public class stackQueue {
 
     public static void main(String[] args) {
