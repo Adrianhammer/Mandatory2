@@ -25,16 +25,17 @@ public class minMax {
     }
 
     public static void Min(ArrayList<Integer> array, int min) {
-
+        System.out.println("Finding smalles number in the list...");
         for (int i = 1; i < array.size(); i++) {
             if (array.get(i) < min) {
                 min = array.get(i);
             }
         }
-        System.out.println(String.format("The smallest number in the list is: %d. At index %d", min, array.indexOf(min) + 1));
+        System.out.println(String.format("The smallest number in the list is: %d. At index %d\n", min, array.indexOf(min) + 1));
     }
 
     public static void Max(ArrayList<Integer> array, int max) {
+        System.out.println("Finding biggest number in the list...");
         for (int i = 1; i < array.size(); i++) {
             if (array.get(i) > max) {
                 max = array.get(i);
